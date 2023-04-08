@@ -133,9 +133,9 @@ def position_birth_search(position, age, cur, conn):
     val = 2023-age
     cur.execute('SELECT id FROM Positions WHERE position = ?',(position,))
     position_id = cur.fetchone()[0]
-    cur.execute('SELECT Players.name,Players.nationality,Players.birthyear FROM Players WHERE position_id = ? AND birthyear > ?',(position_id,val,))
+    cur.execute('SELECT Players.name,Players.birthyear FROM Players WHERE position_id = ? AND birthyear > ?',(position_id,val,))
     for player in cur:
-        lst.append(player)
+        lst.append((player[0],position,player[1]))
     return lst
        
 
